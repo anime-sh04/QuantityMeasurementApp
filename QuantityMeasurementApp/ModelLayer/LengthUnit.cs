@@ -1,10 +1,9 @@
-namespace QuantityMeasurementApp;
+namespace QuantityMeasurementApp.ModelLayer;
 
-// UC4: Extended units added
 public enum LengthUnit
 {
     Feet,
     Inch,
-    Yard,      
+    Yard,
     Centimeter
 }

@@ -1,5 +1,6 @@
 
 namespace QuantityMeasurementApp;
+using QuantityMeasurementApp.ModelLayer;
 // Service class for UC3: Generic Quantity equality using DRY principle
 public class QuantityService
 {
