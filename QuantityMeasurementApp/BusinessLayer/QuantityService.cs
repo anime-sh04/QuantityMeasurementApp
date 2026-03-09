@@ -32,6 +32,33 @@ public class QuantityService
         Console.WriteLine("Output: Equal (" + result + ")");
     }
 
+    public void DemonstrateQuantityAddition()
+    {
+        // First length input
+        Console.WriteLine("Enter first quantity value:");
+        double value1 = ReadDoubleInput();
+    
+        Console.WriteLine("Enter first unit (Feet/Inch/Yard/Centimeter):");
+        LengthUnit unit1 = ReadUnitInput();
+    
+        // Second length input
+        Console.WriteLine("Enter second quantity value:");
+        double value2 = ReadDoubleInput();
+    
+        Console.WriteLine("Enter second unit (Feet/Inch/Yard/Centimeter):");
+        LengthUnit unit2 = ReadUnitInput();
+    
+        // Create QuantityLength objects
+        QuantityLength q1 = new QuantityLength(value1, unit1);
+        QuantityLength q2 = new QuantityLength(value2, unit2);
+    
+        // Perform addition (UC6)
+        QuantityLength result = q1.Add(q2);
+    
+        Console.WriteLine($"\nInput: Quantity({value1}, {unit1}) + Quantity({value2}, {unit2})");
+        Console.WriteLine("Output: " + result);
+    }
+
     // Helper method to safely read numeric input (Validation as per UC3)
     private double ReadDoubleInput()
     {
