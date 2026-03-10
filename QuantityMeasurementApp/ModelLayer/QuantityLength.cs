@@ -1,39 +1,20 @@
 namespace QuantityMeasurementApp.ModelLayer;
 
-// UC3/UC4/UC5: Generic Quantity class for length measurements
-// Supports Feet, Inches, Yards and Centimeters with DRY conversion logic
+// UC8: Refactored QuantityLength class
+// Conversion responsibility moved to LengthUnitExtension
+
 public class QuantityLength
 {
     private readonly double value;
     private readonly LengthUnit unit;
 
-    // Conversion constant
-    private const double INCH_TO_FEET = 1.0 / 12.0;
-
     public QuantityLength(double value, LengthUnit unit)
     {
+        if (double.IsNaN(value) || double.IsInfinity(value))
+            throw new ArgumentException("Invalid numeric value");
+
         this.value = value;
         this.unit = unit;
-    }
-
-    // Converts this object's value to base unit (Feet)
-    private double ToBaseUnitInFeet()
-    {
-        return unit switch
-        {
-            LengthUnit.Feet => value,
-
-            // 1 inch = 1/12 feet
-            LengthUnit.Inch => value * INCH_TO_FEET,
-
-            // 1 yard = 3 feet
-            LengthUnit.Yard => value * 3.0,
-
-            // 1 cm = 0.0328084 feet
-            LengthUnit.Centimeter => value * 0.0328084,
-
-            _ => throw new ArgumentException("Unsupported unit type")
-        };
     }
 
     // =========================
@@ -41,45 +22,14 @@ public class QuantityLength
     // =========================
     public static double Convert(double value, LengthUnit source, LengthUnit target)
     {
-        // Validate numeric value
         if (double.IsNaN(value) || double.IsInfinity(value))
-            throw new ArgumentException("Value must be a finite number");
+            throw new ArgumentException("Value must be finite");
 
-        // If units are the same
         if (source == target)
             return value;
 
-        // Convert source → feet
-        double valueInFeet = ConvertToFeet(value, source);
-
-        // Convert feet → target
-        return ConvertFromFeet(valueInFeet, target);
-    }
-
-    // Helper: Convert any unit to feet
-    private static double ConvertToFeet(double value, LengthUnit unit)
-    {
-        return unit switch
-        {
-            LengthUnit.Feet => value,
-            LengthUnit.Inch => value * INCH_TO_FEET,
-            LengthUnit.Yard => value * 3.0,
-            LengthUnit.Centimeter => value * 0.0328084,
-            _ => throw new ArgumentException("Unsupported unit")
-        };
-    }
-
-    // Helper: Convert feet to target unit
-    private static double ConvertFromFeet(double feetValue, LengthUnit target)
-    {
-        return target switch
-        {
-            LengthUnit.Feet => feetValue,
-            LengthUnit.Inch => feetValue / INCH_TO_FEET,
-            LengthUnit.Yard => feetValue / 3.0,
-            LengthUnit.Centimeter => feetValue / 0.0328084,
-            _ => throw new ArgumentException("Unsupported unit")
-        };
+        double baseValue = source.ConvertToBaseUnit(value);
+        return target.ConvertFromBaseUnit(baseValue);
     }
 
     // =========================
@@ -87,24 +37,27 @@ public class QuantityLength
     // =========================
     public double ConvertTo(LengthUnit targetUnit)
     {
-        return Convert(this.value, this.unit, targetUnit);
+        double baseValue = unit.ConvertToBaseUnit(value);
+        return targetUnit.ConvertFromBaseUnit(baseValue);
     }
-    
+
+    // =========================
+    // UC6 ADDITION (result in first unit)
+    // =========================
     public static QuantityLength Add(QuantityLength length1, QuantityLength length2)
     {
         if (length1 == null || length2 == null)
             throw new ArgumentException("Length operands cannot be null");
-    
-        double l1Feet = length1.ToBaseUnitInFeet();
-        double l2Feet = length2.ToBaseUnitInFeet();
-    
+
+        double l1Feet = length1.unit.ConvertToBaseUnit(length1.value);
+        double l2Feet = length2.unit.ConvertToBaseUnit(length2.value);
+
         double sumFeet = l1Feet + l2Feet;
-    
-        double resultValue = ConvertFromFeet(sumFeet, length1.unit);
-    
+
+        double resultValue = length1.unit.ConvertFromBaseUnit(sumFeet);
+
         return new QuantityLength(resultValue, length1.unit);
     }
-
 
     // =========================
     // UC7 ADDITION WITH TARGET UNIT
@@ -114,15 +67,12 @@ public class QuantityLength
         if (length1 == null || length2 == null)
             throw new ArgumentException("Length operands cannot be null");
 
-        // Convert both operands to base unit (Feet)
-        double l1Feet = length1.ToBaseUnitInFeet();
-        double l2Feet = length2.ToBaseUnitInFeet();
+        double l1Feet = length1.unit.ConvertToBaseUnit(length1.value);
+        double l2Feet = length2.unit.ConvertToBaseUnit(length2.value);
 
-        // Add
         double sumFeet = l1Feet + l2Feet;
 
-        // Convert result to target unit
-        double resultValue = ConvertFromFeet(sumFeet, targetUnit);
+        double resultValue = targetUnit.ConvertFromBaseUnit(sumFeet);
 
         return new QuantityLength(resultValue, targetUnit);
     }
@@ -140,21 +90,24 @@ public class QuantityLength
 
         QuantityLength other = (QuantityLength)obj;
 
-        double thisInFeet = this.ToBaseUnitInFeet();
-        double otherInFeet = other.ToBaseUnitInFeet();
+        double thisBase = unit.ConvertToBaseUnit(value);
+        double otherBase = other.unit.ConvertToBaseUnit(other.value);
 
-        // Floating point tolerance
         const double EPSILON = 1e-6;
-        return Math.Abs(thisInFeet - otherInFeet) < EPSILON;
+        return Math.Abs(thisBase - otherBase) < EPSILON;
     }
 
-    // Required when Equals() is overridden
+    // =========================
+    // HASHCODE
+    // =========================
     public override int GetHashCode()
     {
-        return ToBaseUnitInFeet().GetHashCode();
+        return unit.ConvertToBaseUnit(value).GetHashCode();
     }
 
-    // Useful for debugging/logging
+    // =========================
+    // STRING DISPLAY
+    // =========================
     public override string ToString()
     {
         return $"{value} {unit}";
