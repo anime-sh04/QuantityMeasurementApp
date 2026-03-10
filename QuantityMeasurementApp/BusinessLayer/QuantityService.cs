@@ -53,13 +53,40 @@ public class QuantityService
         QuantityLength q2 = new QuantityLength(value2, unit2);
     
         // Perform addition (UC6)
-        QuantityLength result = q1.Add(q2);
+        QuantityLength result = QuantityLength.Add(q1,q2);
     
         Console.WriteLine($"\nInput: Quantity({value1}, {unit1}) + Quantity({value2}, {unit2})");
         Console.WriteLine("Output: " + result);
     }
 
-    // Helper method to safely read numeric input (Validation as per UC3)
+    public void DemonstrateQuantityAdditionWithTargetUnit()
+    {
+        Console.WriteLine("Enter first quantity value:");
+        double value1 = ReadDoubleInput();
+
+        Console.WriteLine("Enter first unit (Feet/Inch/Yard/Centimeter):");
+        LengthUnit unit1 = ReadUnitInput();
+
+        Console.WriteLine("Enter second quantity value:");
+        double value2 = ReadDoubleInput();
+
+        Console.WriteLine("Enter second unit (Feet/Inch/Yard/Centimeter):");
+        LengthUnit unit2 = ReadUnitInput();
+
+        Console.WriteLine("Enter target unit (Feet/Inch/Yard/Centimeter):");
+        LengthUnit targetUnit = ReadUnitInput();
+
+        QuantityLength q1 = new QuantityLength(value1, unit1);
+        QuantityLength q2 = new QuantityLength(value2, unit2);
+
+        QuantityLength result = QuantityLength.Add(q1, q2, targetUnit);
+
+        Console.WriteLine($"\nInput: Quantity({value1}, {unit1}) + Quantity({value2}, {unit2})");
+        Console.WriteLine($"Target Unit: {targetUnit}");
+        Console.WriteLine($"Output: {result}");
+    }
+
+    // Helper method to safely read numeric input (UC3)
     private double ReadDoubleInput()
     {
         while (true)
@@ -73,7 +100,7 @@ public class QuantityService
         }
     }
 
-    // Helper method to validate and read unit input (Enum Safety)
+    // Helper method to validate and read unit input
     private LengthUnit ReadUnitInput()
     {
         while (true)

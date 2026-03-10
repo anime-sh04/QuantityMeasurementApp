@@ -89,6 +89,43 @@ public class QuantityLength
     {
         return Convert(this.value, this.unit, targetUnit);
     }
+    
+    public static QuantityLength Add(QuantityLength length1, QuantityLength length2)
+    {
+        if (length1 == null || length2 == null)
+            throw new ArgumentException("Length operands cannot be null");
+    
+        double l1Feet = length1.ToBaseUnitInFeet();
+        double l2Feet = length2.ToBaseUnitInFeet();
+    
+        double sumFeet = l1Feet + l2Feet;
+    
+        double resultValue = ConvertFromFeet(sumFeet, length1.unit);
+    
+        return new QuantityLength(resultValue, length1.unit);
+    }
+
+
+    // =========================
+    // UC7 ADDITION WITH TARGET UNIT
+    // =========================
+    public static QuantityLength Add(QuantityLength length1, QuantityLength length2, LengthUnit targetUnit)
+    {
+        if (length1 == null || length2 == null)
+            throw new ArgumentException("Length operands cannot be null");
+
+        // Convert both operands to base unit (Feet)
+        double l1Feet = length1.ToBaseUnitInFeet();
+        double l2Feet = length2.ToBaseUnitInFeet();
+
+        // Add
+        double sumFeet = l1Feet + l2Feet;
+
+        // Convert result to target unit
+        double resultValue = ConvertFromFeet(sumFeet, targetUnit);
+
+        return new QuantityLength(resultValue, targetUnit);
+    }
 
     // =========================
     // EQUALITY CHECK

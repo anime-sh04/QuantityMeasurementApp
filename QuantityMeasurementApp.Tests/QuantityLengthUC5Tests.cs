@@ -4,7 +4,7 @@ using QuantityMeasurementApp.ModelLayer;
 namespace QuantityMeasurementApp.Tests;
 
 [TestClass]
-public class QuantityLengthConversionTests
+public class QuantityLengthUC5Tests
 {
     private const double EPSILON = 1e-6;
 

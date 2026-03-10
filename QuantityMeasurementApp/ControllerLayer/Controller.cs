@@ -13,6 +13,7 @@ public class Controller
             Console.WriteLine("2. Demonstrate Inch Equality");
             Console.WriteLine("3. Demonstrate Quantity Equality");
             Console.WriteLine("4. Demonstrate Quantity Addition");
+            Console.WriteLine("5. Demonstrate Quantity Addition with Target Unit");
             Console.WriteLine("0. Exit");
     
             int choice = int.Parse(Console.ReadLine());
@@ -28,6 +29,7 @@ public class Controller
                 case 2: inchServices.CheckEquality(); break;
                 case 3: quantityServices.DemonstrateQuantityEquality(); break;
                 case 4: quantityServices.DemonstrateQuantityAddition(); break;
+                case 5: quantityServices.DemonstrateQuantityAdditionWithTargetUnit(); break;
                 default: Console.WriteLine("Invalid Choice"); break;
             }
         }
