@@ -4,7 +4,7 @@ using QuantityMeasurementApp.ModelLayer;
 public class QuantityService
 {
     // -----------------------------
-    // GENERIC EQUALITY (Length / Weight / Volume)
+    // GENERIC EQUALITY
     // -----------------------------
     public void DemonstrateEquality()
     {
@@ -17,40 +17,22 @@ public class QuantityService
 
         if (choice == 1)
         {
-            double v1 = ReadDoubleInput();
-            LengthUnit u1 = ReadLengthUnitInput();
-
-            double v2 = ReadDoubleInput();
-            LengthUnit u2 = ReadLengthUnitInput();
-
-            var q1 = new Quantity<LengthUnit>(v1, u1);
-            var q2 = new Quantity<LengthUnit>(v2, u2);
+            var q1 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+            var q2 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
 
             Console.WriteLine(q1.Equals(q2));
         }
         else if (choice == 2)
         {
-            double v1 = ReadDoubleInput();
-            WeightUnit u1 = ReadWeightUnitInput();
-
-            double v2 = ReadDoubleInput();
-            WeightUnit u2 = ReadWeightUnitInput();
-
-            var q1 = new Quantity<WeightUnit>(v1, u1);
-            var q2 = new Quantity<WeightUnit>(v2, u2);
+            var q1 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+            var q2 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
 
             Console.WriteLine(q1.Equals(q2));
         }
         else
         {
-            double v1 = ReadDoubleInput();
-            VolumeUnit u1 = ReadVolumeUnitInput();
-
-            double v2 = ReadDoubleInput();
-            VolumeUnit u2 = ReadVolumeUnitInput();
-
-            var q1 = new Quantity<VolumeUnit>(v1, u1);
-            var q2 = new Quantity<VolumeUnit>(v2, u2);
+            var q1 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+            var q2 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
 
             Console.WriteLine(q1.Equals(q2));
         }
@@ -70,50 +52,29 @@ public class QuantityService
 
         if (choice == 1)
         {
-            double v1 = ReadDoubleInput();
-            LengthUnit u1 = ReadLengthUnitInput();
+            var q1 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+            var q2 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
 
-            double v2 = ReadDoubleInput();
-            LengthUnit u2 = ReadLengthUnitInput();
-
-            var q1 = new Quantity<LengthUnit>(v1, u1);
-            var q2 = new Quantity<LengthUnit>(v2, u2);
-
-            var result = q1.Add(q2);
-            Console.WriteLine(result);
+            Console.WriteLine(q1.Add(q2));
         }
         else if (choice == 2)
         {
-            double v1 = ReadDoubleInput();
-            WeightUnit u1 = ReadWeightUnitInput();
+            var q1 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+            var q2 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
 
-            double v2 = ReadDoubleInput();
-            WeightUnit u2 = ReadWeightUnitInput();
-
-            var q1 = new Quantity<WeightUnit>(v1, u1);
-            var q2 = new Quantity<WeightUnit>(v2, u2);
-
-            var result = q1.Add(q2);
-            Console.WriteLine(result);
+            Console.WriteLine(q1.Add(q2));
         }
         else
         {
-            double v1 = ReadDoubleInput();
-            VolumeUnit u1 = ReadVolumeUnitInput();
+            var q1 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+            var q2 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
 
-            double v2 = ReadDoubleInput();
-            VolumeUnit u2 = ReadVolumeUnitInput();
-
-            var q1 = new Quantity<VolumeUnit>(v1, u1);
-            var q2 = new Quantity<VolumeUnit>(v2, u2);
-
-            var result = q1.Add(q2);
-            Console.WriteLine(result);
+            Console.WriteLine(q1.Add(q2));
         }
     }
 
     // -----------------------------
-    // GENERIC ADDITION WITH TARGET
+    // ADDITION WITH TARGET
     // -----------------------------
     public void DemonstrateAdditionWithTarget()
     {
@@ -126,51 +87,141 @@ public class QuantityService
 
         if (choice == 1)
         {
-            double v1 = ReadDoubleInput();
-            LengthUnit u1 = ReadLengthUnitInput();
-
-            double v2 = ReadDoubleInput();
-            LengthUnit u2 = ReadLengthUnitInput();
+            var q1 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+            var q2 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
 
             LengthUnit target = ReadLengthUnitInput();
 
-            var q1 = new Quantity<LengthUnit>(v1, u1);
-            var q2 = new Quantity<LengthUnit>(v2, u2);
-
-            var result = q1.Add(q2, target);
-            Console.WriteLine(result);
+            Console.WriteLine(q1.Add(q2, target));
         }
         else if (choice == 2)
         {
-            double v1 = ReadDoubleInput();
-            WeightUnit u1 = ReadWeightUnitInput();
-
-            double v2 = ReadDoubleInput();
-            WeightUnit u2 = ReadWeightUnitInput();
+            var q1 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+            var q2 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
 
             WeightUnit target = ReadWeightUnitInput();
 
-            var q1 = new Quantity<WeightUnit>(v1, u1);
-            var q2 = new Quantity<WeightUnit>(v2, u2);
-
-            var result = q1.Add(q2, target);
-            Console.WriteLine(result);
+            Console.WriteLine(q1.Add(q2, target));
         }
         else
         {
-            double v1 = ReadDoubleInput();
-            VolumeUnit u1 = ReadVolumeUnitInput();
-
-            double v2 = ReadDoubleInput();
-            VolumeUnit u2 = ReadVolumeUnitInput();
+            var q1 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+            var q2 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
 
             VolumeUnit target = ReadVolumeUnitInput();
 
-            var q1 = new Quantity<VolumeUnit>(v1, u1);
-            var q2 = new Quantity<VolumeUnit>(v2, u2);
+            Console.WriteLine(q1.Add(q2, target));
+        }
+    }
 
-            var result = q1.Add(q2, target);
-            Console.WriteLine(result);
+    // -----------------------------
+    // SUBTRACTION (UC12)
+    // -----------------------------
+    public void DemonstrateSubtraction()
+    {
+        Console.WriteLine("Select category:");
+        Console.WriteLine("1. Length");
+        Console.WriteLine("2. Weight");
+        Console.WriteLine("3. Volume");
+
+        int choice = int.Parse(Console.ReadLine());
+
+        if (choice == 1)
+        {
+            var q1 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+            var q2 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+
+            Console.WriteLine(q1.Subtract(q2));
+        }
+        else if (choice == 2)
+        {
+            var q1 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+            var q2 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+
+            Console.WriteLine(q1.Subtract(q2));
+        }
+        else
+        {
+            var q1 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+            var q2 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+
+            Console.WriteLine(q1.Subtract(q2));
+        }
+    }
+
+    // -----------------------------
+    // SUBTRACTION WITH TARGET
+    // -----------------------------
+    public void DemonstrateSubtractionWithTarget()
+    {
+        Console.WriteLine("Select category:");
+        Console.WriteLine("1. Length");
+        Console.WriteLine("2. Weight");
+        Console.WriteLine("3. Volume");
+
+        int choice = int.Parse(Console.ReadLine());
+
+        if (choice == 1)
+        {
+            var q1 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+            var q2 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+
+            LengthUnit target = ReadLengthUnitInput();
+
+            Console.WriteLine(q1.Subtract(q2, target));
+        }
+        else if (choice == 2)
+        {
+            var q1 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+            var q2 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+
+            WeightUnit target = ReadWeightUnitInput();
+
+            Console.WriteLine(q1.Subtract(q2, target));
+        }
+        else
+        {
+            var q1 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+            var q2 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+
+            VolumeUnit target = ReadVolumeUnitInput();
+
+            Console.WriteLine(q1.Subtract(q2, target));
+        }
+    }
+
+    // -----------------------------
+    // DIVISION (UC12)
+    // -----------------------------
+    public void DemonstrateDivision()
+    {
+        Console.WriteLine("Select category:");
+        Console.WriteLine("1. Length");
+        Console.WriteLine("2. Weight");
+        Console.WriteLine("3. Volume");
+
+        int choice = int.Parse(Console.ReadLine());
+
+        if (choice == 1)
+        {
+            var q1 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+            var q2 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+
+            Console.WriteLine(q1.Divide(q2));
+        }
+        else if (choice == 2)
+        {
+            var q1 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+            var q2 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+
+            Console.WriteLine(q1.Divide(q2));
+        }
+        else
+        {
+            var q1 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+            var q2 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+
+            Console.WriteLine(q1.Divide(q2));
         }
     }
 
@@ -198,9 +249,7 @@ public class QuantityService
         {
             Console.WriteLine("Enter unit (Feet/Inch/Yard/Centimeter):");
 
-            string input = Console.ReadLine();
-
-            if (Enum.TryParse(input, true, out LengthUnit unit))
+            if (Enum.TryParse(Console.ReadLine(), true, out LengthUnit unit))
                 return unit;
 
             Console.WriteLine("Invalid length unit.");
@@ -213,9 +262,7 @@ public class QuantityService
         {
             Console.WriteLine("Enter unit (Kilogram/Gram/Pound):");
 
-            string input = Console.ReadLine();
-
-            if (Enum.TryParse(input, true, out WeightUnit unit))
+            if (Enum.TryParse(Console.ReadLine(), true, out WeightUnit unit))
                 return unit;
 
             Console.WriteLine("Invalid weight unit.");
@@ -228,9 +275,7 @@ public class QuantityService
         {
             Console.WriteLine("Enter unit (Litre/Millilitre/Gallon):");
 
-            string input = Console.ReadLine();
-
-            if (Enum.TryParse(input, true, out VolumeUnit unit))
+            if (Enum.TryParse(Console.ReadLine(), true, out VolumeUnit unit))
                 return unit;
 
             Console.WriteLine("Invalid volume unit.");

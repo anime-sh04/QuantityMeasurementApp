@@ -32,8 +32,13 @@ public class Quantity<U> where U : Enum
     // --------------------
     public Quantity<U> ConvertTo(U targetUnit)
     {
+        if (targetUnit == null)
+            throw new ArgumentException("Target unit cannot be null");
+
         double baseValue = ConvertToBase(value, unit);
         double converted = ConvertFromBase(baseValue, targetUnit);
+
+        converted = Math.Round(converted, 2);
 
         return new Quantity<U>(converted, targetUnit);
     }
@@ -48,6 +53,12 @@ public class Quantity<U> where U : Enum
 
     public Quantity<U> Add(Quantity<U> other, U targetUnit)
     {
+        if (other == null)
+            throw new ArgumentException("Quantity cannot be null");
+
+        if (targetUnit == null)
+            throw new ArgumentException("Target unit cannot be null");
+
         double v1 = ConvertToBase(this.value, this.unit);
         double v2 = ConvertToBase(other.value, other.unit);
 
@@ -55,7 +66,54 @@ public class Quantity<U> where U : Enum
 
         double result = ConvertFromBase(sum, targetUnit);
 
+        result = Math.Round(result, 2);
+
         return new Quantity<U>(result, targetUnit);
+    }
+
+    // --------------------
+    // Subtract (UC12)
+    // --------------------
+    public Quantity<U> Subtract(Quantity<U> other)
+    {
+        return Subtract(other, this.unit);
+    }
+
+    public Quantity<U> Subtract(Quantity<U> other, U targetUnit)
+    {
+        if (other == null)
+            throw new ArgumentException("Quantity cannot be null");
+
+        if (targetUnit == null)
+            throw new ArgumentException("Target unit cannot be null");
+
+        double v1 = ConvertToBase(this.value, this.unit);
+        double v2 = ConvertToBase(other.value, other.unit);
+
+        double diff = v1 - v2;
+
+        double result = ConvertFromBase(diff, targetUnit);
+
+        result = Math.Round(result, 2);
+
+        return new Quantity<U>(result, targetUnit);
+    }
+
+    // --------------------
+    // Divide (UC12)
+    // --------------------
+    public double Divide(Quantity<U> other)
+    {
+        if (other == null)
+            throw new ArgumentException("Quantity cannot be null");
+
+        double v1 = ConvertToBase(this.value, this.unit);
+        double v2 = ConvertToBase(other.value, other.unit);
+
+        if (v2 == 0)
+            throw new ArithmeticException("Division by zero");
+
+        return v1 / v2;
     }
 
     // --------------------
@@ -96,27 +154,27 @@ public class Quantity<U> where U : Enum
     {
         if (unit is LengthUnit lu)
             return lu.ConvertToBaseUnit(value);
-    
+
         if (unit is WeightUnit wu)
             return wu.ConvertToBaseUnit(value);
 
-        if (unit is VolumeUnit volume)
-            return volume.ConvertToBaseUnit(value);
-    
+        if (unit is VolumeUnit vu)
+            return vu.ConvertToBaseUnit(value);
+
         throw new ArgumentException("Unsupported unit type");
     }
-    
+
     private double ConvertFromBase(double baseValue, U unit)
     {
         if (unit is LengthUnit lu)
             return lu.ConvertFromBaseUnit(baseValue);
-    
+
         if (unit is WeightUnit wu)
             return wu.ConvertFromBaseUnit(baseValue);
 
-        if (unit is VolumeUnit volume)
-            return volume.ConvertFromBaseUnit(baseValue);
-    
+        if (unit is VolumeUnit vu)
+            return vu.ConvertFromBaseUnit(baseValue);
+
         throw new ArgumentException("Unsupported unit type");
     }
 }

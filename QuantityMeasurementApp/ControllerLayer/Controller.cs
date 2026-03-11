@@ -17,6 +17,9 @@ public class Controller
             Console.WriteLine("3. Demonstrate Generic Equality");
             Console.WriteLine("4. Demonstrate Generic Addition");
             Console.WriteLine("5. Demonstrate Generic Addition With Target Unit");
+            Console.WriteLine("6. Demonstrate Generic Subtraction");
+            Console.WriteLine("7. Demonstrate Generic Subtraction With Target Unit");
+            Console.WriteLine("8. Demonstrate Generic Division");
             Console.WriteLine("0. Exit");
 
             Console.Write("Enter choice: ");
@@ -48,6 +51,18 @@ public class Controller
 
                 case 5:
                     quantityServices.DemonstrateAdditionWithTarget();
+                    break;
+
+                case 6:
+                    quantityServices.DemonstrateSubtraction();
+                    break;
+
+                case 7:
+                    quantityServices.DemonstrateSubtractionWithTarget();
+                    break;
+
+                case 8:
+                    quantityServices.DemonstrateDivision();
                     break;
 
                 default:
