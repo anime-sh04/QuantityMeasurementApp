@@ -8,31 +8,32 @@ public enum LengthUnit
     Centimeter
 }
 
-public static class LengthUnitExtension
+public static class LengthUnitExtensions
 {
-    // Convert unit value → base unit (Feet)
-    public static double ConvertToBaseUnit(this LengthUnit unit, double value)
+    public static double GetConversionFactor(this LengthUnit unit)
     {
         return unit switch
         {
-            LengthUnit.Feet => value,
-            LengthUnit.Inch => value / 12.0,
-            LengthUnit.Yard => value * 3.0,
-            LengthUnit.Centimeter => value * 0.0328084,
+            LengthUnit.Feet => 1.0,
+            LengthUnit.Inch => 1.0 / 12.0,
+            LengthUnit.Yard => 3.0,
+            LengthUnit.Centimeter => 0.0328084,
             _ => throw new ArgumentException("Unsupported unit")
         };
     }
 
-    // Convert base unit (Feet) → target unit
+    public static double ConvertToBaseUnit(this LengthUnit unit, double value)
+    {
+        return value * unit.GetConversionFactor();
+    }
+
     public static double ConvertFromBaseUnit(this LengthUnit unit, double baseValue)
     {
-        return unit switch
-        {
-            LengthUnit.Feet => baseValue,
-            LengthUnit.Inch => baseValue * 12.0,
-            LengthUnit.Yard => baseValue / 3.0,
-            LengthUnit.Centimeter => baseValue / 0.0328084,
-            _ => throw new ArgumentException("Unsupported unit")
-        };
+        return baseValue / unit.GetConversionFactor();
+    }
+
+    public static string GetUnitName(this LengthUnit unit)
+    {
+        return unit.ToString();
     }
 }

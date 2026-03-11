@@ -4,153 +4,149 @@ using QuantityMeasurementApp.ModelLayer;
 public class QuantityService
 {
     // -----------------------------
-    // LENGTH EQUALITY (UC3)
+    // GENERIC EQUALITY (Length / Weight)
     // -----------------------------
-    public void DemonstrateQuantityEquality()
+    public void DemonstrateEquality()
     {
-        Console.WriteLine("Enter first quantity value:");
-        double value1 = ReadDoubleInput();
+        Console.WriteLine("Select category:");
+        Console.WriteLine("1. Length");
+        Console.WriteLine("2. Weight");
 
-        Console.WriteLine("Enter first unit (Feet/Inch/Yard/Centimeter):");
-        LengthUnit unit1 = ReadLengthUnitInput();
+        int choice = int.Parse(Console.ReadLine());
 
-        Console.WriteLine("Enter second quantity value:");
-        double value2 = ReadDoubleInput();
+        if (choice == 1)
+        {
+            double v1 = ReadDoubleInput();
+            LengthUnit u1 = ReadLengthUnitInput();
 
-        Console.WriteLine("Enter second unit (Feet/Inch/Yard/Centimeter):");
-        LengthUnit unit2 = ReadLengthUnitInput();
+            double v2 = ReadDoubleInput();
+            LengthUnit u2 = ReadLengthUnitInput();
 
-        QuantityLength q1 = new QuantityLength(value1, unit1);
-        QuantityLength q2 = new QuantityLength(value2, unit2);
+            var q1 = new Quantity<LengthUnit>(v1, u1);
+            var q2 = new Quantity<LengthUnit>(v2, u2);
 
-        bool result = q1.Equals(q2);
+            Console.WriteLine(q1.Equals(q2));
+        }
+        else
+        {
+            double v1 = ReadDoubleInput();
+            WeightUnit u1 = ReadWeightUnitInput();
 
-        Console.WriteLine($"\nInput: Quantity({value1}, {unit1}) and Quantity({value2}, {unit2})");
-        Console.WriteLine("Output: Equal (" + result + ")");
+            double v2 = ReadDoubleInput();
+            WeightUnit u2 = ReadWeightUnitInput();
+
+            var q1 = new Quantity<WeightUnit>(v1, u1);
+            var q2 = new Quantity<WeightUnit>(v2, u2);
+
+            Console.WriteLine(q1.Equals(q2));
+        }
     }
 
     // -----------------------------
-    // LENGTH ADDITION (UC6)
+    // GENERIC ADDITION
     // -----------------------------
-    public void DemonstrateQuantityAddition()
+    public void DemonstrateAddition()
     {
-        Console.WriteLine("Enter first quantity value:");
-        double value1 = ReadDoubleInput();
+        Console.WriteLine("Select category:");
+        Console.WriteLine("1. Length");
+        Console.WriteLine("2. Weight");
 
-        Console.WriteLine("Enter first unit (Feet/Inch/Yard/Centimeter):");
-        LengthUnit unit1 = ReadLengthUnitInput();
+        int choice = int.Parse(Console.ReadLine());
 
-        Console.WriteLine("Enter second quantity value:");
-        double value2 = ReadDoubleInput();
+        if (choice == 1)
+        {
+            double v1 = ReadDoubleInput();
+            LengthUnit u1 = ReadLengthUnitInput();
 
-        Console.WriteLine("Enter second unit (Feet/Inch/Yard/Centimeter):");
-        LengthUnit unit2 = ReadLengthUnitInput();
+            double v2 = ReadDoubleInput();
+            LengthUnit u2 = ReadLengthUnitInput();
 
-        QuantityLength q1 = new QuantityLength(value1, unit1);
-        QuantityLength q2 = new QuantityLength(value2, unit2);
+            var q1 = new Quantity<LengthUnit>(v1, u1);
+            var q2 = new Quantity<LengthUnit>(v2, u2);
 
-        QuantityLength result = QuantityLength.Add(q1, q2);
+            var result = q1.Add(q2);
 
-        Console.WriteLine($"\nInput: Quantity({value1}, {unit1}) + Quantity({value2}, {unit2})");
-        Console.WriteLine("Output: " + result);
+            Console.WriteLine(result);
+        }
+        else
+        {
+            double v1 = ReadDoubleInput();
+            WeightUnit u1 = ReadWeightUnitInput();
+
+            double v2 = ReadDoubleInput();
+            WeightUnit u2 = ReadWeightUnitInput();
+
+            var q1 = new Quantity<WeightUnit>(v1, u1);
+            var q2 = new Quantity<WeightUnit>(v2, u2);
+
+            var result = q1.Add(q2);
+
+            Console.WriteLine(result);
+        }
     }
 
     // -----------------------------
-    // LENGTH ADDITION WITH TARGET UNIT (UC7)
+    // GENERIC ADDITION WITH TARGET
     // -----------------------------
-    public void DemonstrateQuantityAdditionWithTargetUnit()
+    public void DemonstrateAdditionWithTarget()
     {
-        Console.WriteLine("Enter first quantity value:");
-        double value1 = ReadDoubleInput();
+        Console.WriteLine("Select category:");
+        Console.WriteLine("1. Length");
+        Console.WriteLine("2. Weight");
 
-        Console.WriteLine("Enter first unit (Feet/Inch/Yard/Centimeter):");
-        LengthUnit unit1 = ReadLengthUnitInput();
+        int choice = int.Parse(Console.ReadLine());
 
-        Console.WriteLine("Enter second quantity value:");
-        double value2 = ReadDoubleInput();
+        if (choice == 1)
+        {
+            double v1 = ReadDoubleInput();
+            LengthUnit u1 = ReadLengthUnitInput();
 
-        Console.WriteLine("Enter second unit (Feet/Inch/Yard/Centimeter):");
-        LengthUnit unit2 = ReadLengthUnitInput();
+            double v2 = ReadDoubleInput();
+            LengthUnit u2 = ReadLengthUnitInput();
 
-        Console.WriteLine("Enter target unit (Feet/Inch/Yard/Centimeter):");
-        LengthUnit targetUnit = ReadLengthUnitInput();
+            LengthUnit target = ReadLengthUnitInput();
 
-        QuantityLength q1 = new QuantityLength(value1, unit1);
-        QuantityLength q2 = new QuantityLength(value2, unit2);
+            var q1 = new Quantity<LengthUnit>(v1, u1);
+            var q2 = new Quantity<LengthUnit>(v2, u2);
 
-        QuantityLength result = QuantityLength.Add(q1, q2, targetUnit);
+            var result = q1.Add(q2, target);
 
-        Console.WriteLine($"\nInput: Quantity({value1}, {unit1}) + Quantity({value2}, {unit2})");
-        Console.WriteLine($"Target Unit: {targetUnit}");
-        Console.WriteLine($"Output: {result}");
+            Console.WriteLine(result);
+        }
+        else
+        {
+            double v1 = ReadDoubleInput();
+            WeightUnit u1 = ReadWeightUnitInput();
+
+            double v2 = ReadDoubleInput();
+            WeightUnit u2 = ReadWeightUnitInput();
+
+            WeightUnit target = ReadWeightUnitInput();
+
+            var q1 = new Quantity<WeightUnit>(v1, u1);
+            var q2 = new Quantity<WeightUnit>(v2, u2);
+
+            var result = q1.Add(q2, target);
+
+            Console.WriteLine(result);
+        }
     }
 
     // -----------------------------
-    // UC9 WEIGHT EQUALITY
-    // -----------------------------
-    public void DemonstrateWeightEquality()
-    {
-        Console.WriteLine("Enter first weight value:");
-        double value1 = ReadDoubleInput();
-
-        Console.WriteLine("Enter first unit (Kilogram/Gram/Pound):");
-        WeightUnit unit1 = ReadWeightUnitInput();
-
-        Console.WriteLine("Enter second weight value:");
-        double value2 = ReadDoubleInput();
-
-        Console.WriteLine("Enter second unit (Kilogram/Gram/Pound):");
-        WeightUnit unit2 = ReadWeightUnitInput();
-
-        QuantityWeight w1 = new QuantityWeight(value1, unit1);
-        QuantityWeight w2 = new QuantityWeight(value2, unit2);
-
-        bool result = w1.Equals(w2);
-
-        Console.WriteLine($"\nInput: Quantity({value1}, {unit1}) and Quantity({value2}, {unit2})");
-        Console.WriteLine("Output: Equal (" + result + ")");
-    }
-
-    // -----------------------------
-    // UC9 WEIGHT ADDITION
-    // -----------------------------
-    public void DemonstrateWeightAddition()
-    {
-        Console.WriteLine("Enter first weight value:");
-        double value1 = ReadDoubleInput();
-
-        Console.WriteLine("Enter first unit (Kilogram/Gram/Pound):");
-        WeightUnit unit1 = ReadWeightUnitInput();
-
-        Console.WriteLine("Enter second weight value:");
-        double value2 = ReadDoubleInput();
-
-        Console.WriteLine("Enter second unit (Kilogram/Gram/Pound):");
-        WeightUnit unit2 = ReadWeightUnitInput();
-
-        QuantityWeight w1 = new QuantityWeight(value1, unit1);
-        QuantityWeight w2 = new QuantityWeight(value2, unit2);
-
-        QuantityWeight result = QuantityWeight.Add(w1, w2);
-
-        Console.WriteLine($"\nInput: Quantity({value1}, {unit1}) + Quantity({value2}, {unit2})");
-        Console.WriteLine($"Output: {result}");
-    }
-
-    // -----------------------------
-    // HELPER METHODS
+    // HELPERS
     // -----------------------------
 
     private double ReadDoubleInput()
     {
         while (true)
         {
+            Console.WriteLine("Enter Values : ");
             string input = Console.ReadLine();
 
             if (double.TryParse(input, out double value))
                 return value;
 
-            Console.WriteLine("Invalid numeric input. Please enter a valid number:");
+            Console.WriteLine("Invalid number. Try again:");
         }
     }
 
@@ -158,12 +154,14 @@ public class QuantityService
     {
         while (true)
         {
+            Console.WriteLine("Enter unit (Feet/Inch/Yard/Centimeter):");
+
             string input = Console.ReadLine();
 
             if (Enum.TryParse(input, true, out LengthUnit unit))
                 return unit;
 
-            Console.WriteLine("Invalid unit. Enter Feet/Inch/Yard/Centimeter:");
+            Console.WriteLine("Invalid length unit.");
         }
     }
 
@@ -171,12 +169,14 @@ public class QuantityService
     {
         while (true)
         {
+            Console.WriteLine("Enter unit (Kilogram/Gram/Pound):");
+
             string input = Console.ReadLine();
 
             if (Enum.TryParse(input, true, out WeightUnit unit))
                 return unit;
 
-            Console.WriteLine("Invalid unit. Enter Kilogram/Gram/Pound:");
+            Console.WriteLine("Invalid weight unit.");
         }
     }
 }

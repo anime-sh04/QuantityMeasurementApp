@@ -1,4 +1,5 @@
 namespace QuantityMeasurementApp;
+using QuantityMeasurementApp.ModelLayer;
 
 public class Controller
 {
@@ -13,13 +14,12 @@ public class Controller
             Console.WriteLine("\n==== Quantity Measurement Menu ====");
             Console.WriteLine("1. Demonstrate Feet Equality");
             Console.WriteLine("2. Demonstrate Inch Equality");
-            Console.WriteLine("3. Demonstrate Length Equality");
-            Console.WriteLine("4. Demonstrate Length Addition");
-            Console.WriteLine("5. Demonstrate Length Addition with Target Unit");
-            Console.WriteLine("6. Demonstrate Weight Equality");
-            Console.WriteLine("7. Demonstrate Weight Addition");
+            Console.WriteLine("3. Demonstrate Generic Equality");
+            Console.WriteLine("4. Demonstrate Generic Addition");
+            Console.WriteLine("5. Demonstrate Generic Addition With Target Unit");
             Console.WriteLine("0. Exit");
 
+            Console.Write("Enter choice: ");
             int choice = int.Parse(Console.ReadLine());
 
             if (choice == 0)
@@ -39,23 +39,15 @@ public class Controller
                     break;
 
                 case 3:
-                    quantityServices.DemonstrateQuantityEquality();
+                    quantityServices.DemonstrateEquality();
                     break;
 
                 case 4:
-                    quantityServices.DemonstrateQuantityAddition();
+                    quantityServices.DemonstrateAddition();
                     break;
 
                 case 5:
-                    quantityServices.DemonstrateQuantityAdditionWithTargetUnit();
-                    break;
-
-                case 6:
-                    quantityServices.DemonstrateWeightEquality();
-                    break;
-
-                case 7:
-                    quantityServices.DemonstrateWeightAddition();
+                    quantityServices.DemonstrateAdditionWithTarget();
                     break;
 
                 default:

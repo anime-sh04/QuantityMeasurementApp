@@ -7,29 +7,31 @@ public enum WeightUnit
     Pound
 }
 
-public static class WeightUnitExtension
+public static class WeightUnitExtensions
 {
-    // Convert weight → base unit (Kilogram)
-    public static double ConvertToBaseUnit(this WeightUnit unit, double value)
+    public static double GetConversionFactor(this WeightUnit unit)
     {
         return unit switch
         {
-            WeightUnit.Kilogram => value,
-            WeightUnit.Gram => value * 0.001,
-            WeightUnit.Pound => value * 0.453592,
-            _ => throw new ArgumentException("Unsupported weight unit")
+            WeightUnit.Kilogram => 1.0,
+            WeightUnit.Gram => 0.001,
+            WeightUnit.Pound => 0.453592,
+            _ => throw new ArgumentException("Unsupported unit")
         };
     }
 
-    // Convert base unit (Kilogram) → target unit
+    public static double ConvertToBaseUnit(this WeightUnit unit, double value)
+    {
+        return value * unit.GetConversionFactor();
+    }
+
     public static double ConvertFromBaseUnit(this WeightUnit unit, double baseValue)
     {
-        return unit switch
-        {
-            WeightUnit.Kilogram => baseValue,
-            WeightUnit.Gram => baseValue / 0.001,
-            WeightUnit.Pound => baseValue / 0.453592,
-            _ => throw new ArgumentException("Unsupported weight unit")
-        };
+        return baseValue / unit.GetConversionFactor();
+    }
+
+    public static string GetUnitName(this WeightUnit unit)
+    {
+        return unit.ToString();
     }
 }
