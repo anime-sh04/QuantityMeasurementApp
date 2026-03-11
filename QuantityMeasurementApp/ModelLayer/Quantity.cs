@@ -49,6 +49,8 @@ public class Quantity<U> where U : Enum
 
     public Quantity<U> Add(Quantity<U> other, U targetUnit)
     {
+        ValidateTemperatureOperation("ADD");
+
         validateArithmeticOperands(other, targetUnit, true);
 
         double resultBase = performBaseArithmetic(other, ArithmeticOperation.ADD);
@@ -69,6 +71,8 @@ public class Quantity<U> where U : Enum
 
     public Quantity<U> Subtract(Quantity<U> other, U targetUnit)
     {
+        ValidateTemperatureOperation("SUBTRACT");
+
         validateArithmeticOperands(other, targetUnit, true);
 
         double resultBase = performBaseArithmetic(other, ArithmeticOperation.SUBTRACT);
@@ -84,11 +88,25 @@ public class Quantity<U> where U : Enum
 
     public double Divide(Quantity<U> other)
     {
+        ValidateTemperatureOperation("DIVIDE");
+
         validateArithmeticOperands(other, default(U), false);
 
         double result = performBaseArithmetic(other, ArithmeticOperation.DIVIDE);
 
         return result;
+    }
+
+    // ============================
+    // TEMPERATURE VALIDATION (UC14)
+    // ============================
+
+    private void ValidateTemperatureOperation(string operation)
+    {
+        if (unit is TemperatureUnit temp)
+        {
+            temp.ValidateOperationSupport(operation);
+        }
     }
 
     // ============================
@@ -199,6 +217,9 @@ public class Quantity<U> where U : Enum
         if (unit is VolumeUnit vu)
             return vu.ConvertToBaseUnit(value);
 
+        if (unit is TemperatureUnit tu)
+            return tu.ConvertToBaseUnit(value);
+
         throw new ArgumentException("Unsupported unit type");
     }
 
@@ -212,6 +233,9 @@ public class Quantity<U> where U : Enum
 
         if (unit is VolumeUnit vu)
             return vu.ConvertFromBaseUnit(baseValue);
+
+        if (unit is TemperatureUnit tu)
+            return tu.ConvertFromBaseUnit(baseValue);
 
         throw new ArgumentException("Unsupported unit type");
     }

@@ -12,6 +12,7 @@ public class QuantityService
         Console.WriteLine("1. Length");
         Console.WriteLine("2. Weight");
         Console.WriteLine("3. Volume");
+        Console.WriteLine("4. Temperature");
 
         int choice = int.Parse(Console.ReadLine());
 
@@ -29,10 +30,17 @@ public class QuantityService
 
             Console.WriteLine(q1.Equals(q2));
         }
-        else
+        else if (choice == 3)
         {
             var q1 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
             var q2 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+
+            Console.WriteLine(q1.Equals(q2));
+        }
+        else
+        {
+            var q1 = new Quantity<TemperatureUnit>(ReadDoubleInput(), ReadTemperatureUnitInput());
+            var q2 = new Quantity<TemperatureUnit>(ReadDoubleInput(), ReadTemperatureUnitInput());
 
             Console.WriteLine(q1.Equals(q2));
         }
@@ -47,29 +55,44 @@ public class QuantityService
         Console.WriteLine("1. Length");
         Console.WriteLine("2. Weight");
         Console.WriteLine("3. Volume");
+        Console.WriteLine("4. Temperature");
 
         int choice = int.Parse(Console.ReadLine());
 
-        if (choice == 1)
+        try
         {
-            var q1 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
-            var q2 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+            if (choice == 1)
+            {
+                var q1 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+                var q2 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
 
-            Console.WriteLine(q1.Add(q2));
+                Console.WriteLine(q1.Add(q2));
+            }
+            else if (choice == 2)
+            {
+                var q1 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+                var q2 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+
+                Console.WriteLine(q1.Add(q2));
+            }
+            else if (choice == 3)
+            {
+                var q1 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+                var q2 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+
+                Console.WriteLine(q1.Add(q2));
+            }
+            else
+            {
+                var q1 = new Quantity<TemperatureUnit>(ReadDoubleInput(), ReadTemperatureUnitInput());
+                var q2 = new Quantity<TemperatureUnit>(ReadDoubleInput(), ReadTemperatureUnitInput());
+
+                Console.WriteLine(q1.Add(q2));
+            }
         }
-        else if (choice == 2)
+        catch (Exception ex)
         {
-            var q1 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
-            var q2 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
-
-            Console.WriteLine(q1.Add(q2));
-        }
-        else
-        {
-            var q1 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
-            var q2 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
-
-            Console.WriteLine(q1.Add(q2));
+            Console.WriteLine(ex.Message);
         }
     }
 
@@ -85,37 +108,44 @@ public class QuantityService
 
         int choice = int.Parse(Console.ReadLine());
 
-        if (choice == 1)
+        try
         {
-            var q1 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
-            var q2 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+            if (choice == 1)
+            {
+                var q1 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
+                var q2 = new Quantity<LengthUnit>(ReadDoubleInput(), ReadLengthUnitInput());
 
-            LengthUnit target = ReadLengthUnitInput();
+                LengthUnit target = ReadLengthUnitInput();
 
-            Console.WriteLine(q1.Add(q2, target));
+                Console.WriteLine(q1.Add(q2, target));
+            }
+            else if (choice == 2)
+            {
+                var q1 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+                var q2 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
+
+                WeightUnit target = ReadWeightUnitInput();
+
+                Console.WriteLine(q1.Add(q2, target));
+            }
+            else
+            {
+                var q1 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+                var q2 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
+
+                VolumeUnit target = ReadVolumeUnitInput();
+
+                Console.WriteLine(q1.Add(q2, target));
+            }
         }
-        else if (choice == 2)
+        catch (Exception ex)
         {
-            var q1 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
-            var q2 = new Quantity<WeightUnit>(ReadDoubleInput(), ReadWeightUnitInput());
-
-            WeightUnit target = ReadWeightUnitInput();
-
-            Console.WriteLine(q1.Add(q2, target));
-        }
-        else
-        {
-            var q1 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
-            var q2 = new Quantity<VolumeUnit>(ReadDoubleInput(), ReadVolumeUnitInput());
-
-            VolumeUnit target = ReadVolumeUnitInput();
-
-            Console.WriteLine(q1.Add(q2, target));
+            Console.WriteLine(ex.Message);
         }
     }
 
     // -----------------------------
-    // SUBTRACTION (UC12)
+    // SUBTRACTION
     // -----------------------------
     public void DemonstrateSubtraction()
     {
@@ -191,7 +221,7 @@ public class QuantityService
     }
 
     // -----------------------------
-    // DIVISION (UC12)
+    // DIVISION
     // -----------------------------
     public void DemonstrateDivision()
     {
@@ -234,12 +264,10 @@ public class QuantityService
         while (true)
         {
             Console.WriteLine("Enter Value:");
-            string input = Console.ReadLine();
-
-            if (double.TryParse(input, out double value))
+            if (double.TryParse(Console.ReadLine(), out double value))
                 return value;
 
-            Console.WriteLine("Invalid number. Try again:");
+            Console.WriteLine("Invalid number.");
         }
     }
 
@@ -279,6 +307,19 @@ public class QuantityService
                 return unit;
 
             Console.WriteLine("Invalid volume unit.");
+        }
+    }
+
+    private TemperatureUnit ReadTemperatureUnitInput()
+    {
+        while (true)
+        {
+            Console.WriteLine("Enter unit (Celsius/Fahrenheit/Kelvin):");
+
+            if (Enum.TryParse(Console.ReadLine(), true, out TemperatureUnit unit))
+                return unit;
+
+            Console.WriteLine("Invalid temperature unit.");
         }
     }
 }
