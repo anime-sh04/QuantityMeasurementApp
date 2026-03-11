@@ -27,25 +27,21 @@ public class Quantity<U> where U : Enum
         return unit;
     }
 
-    // --------------------
-    // Convert
-    // --------------------
-    public Quantity<U> ConvertTo(U targetUnit)
+    // ============================
+    // ENUM FOR OPERATIONS (UC13)
+    // ============================
+
+    private enum ArithmeticOperation
     {
-        if (targetUnit == null)
-            throw new ArgumentException("Target unit cannot be null");
-
-        double baseValue = ConvertToBase(value, unit);
-        double converted = ConvertFromBase(baseValue, targetUnit);
-
-        converted = Math.Round(converted, 2);
-
-        return new Quantity<U>(converted, targetUnit);
+        ADD,
+        SUBTRACT,
+        DIVIDE
     }
 
-    // --------------------
-    // Add
-    // --------------------
+    // ============================
+    // ADD
+    // ============================
+
     public Quantity<U> Add(Quantity<U> other)
     {
         return Add(other, this.unit);
@@ -53,27 +49,19 @@ public class Quantity<U> where U : Enum
 
     public Quantity<U> Add(Quantity<U> other, U targetUnit)
     {
-        if (other == null)
-            throw new ArgumentException("Quantity cannot be null");
+        validateArithmeticOperands(other, targetUnit, true);
 
-        if (targetUnit == null)
-            throw new ArgumentException("Target unit cannot be null");
+        double resultBase = performBaseArithmetic(other, ArithmeticOperation.ADD);
 
-        double v1 = ConvertToBase(this.value, this.unit);
-        double v2 = ConvertToBase(other.value, other.unit);
+        double result = ConvertFromBase(resultBase, targetUnit);
 
-        double sum = v1 + v2;
-
-        double result = ConvertFromBase(sum, targetUnit);
-
-        result = Math.Round(result, 2);
-
-        return new Quantity<U>(result, targetUnit);
+        return new Quantity<U>(Round(result), targetUnit);
     }
 
-    // --------------------
-    // Subtract (UC12)
-    // --------------------
+    // ============================
+    // SUBTRACT
+    // ============================
+
     public Quantity<U> Subtract(Quantity<U> other)
     {
         return Subtract(other, this.unit);
@@ -81,44 +69,93 @@ public class Quantity<U> where U : Enum
 
     public Quantity<U> Subtract(Quantity<U> other, U targetUnit)
     {
-        if (other == null)
-            throw new ArgumentException("Quantity cannot be null");
+        validateArithmeticOperands(other, targetUnit, true);
 
-        if (targetUnit == null)
-            throw new ArgumentException("Target unit cannot be null");
+        double resultBase = performBaseArithmetic(other, ArithmeticOperation.SUBTRACT);
 
-        double v1 = ConvertToBase(this.value, this.unit);
-        double v2 = ConvertToBase(other.value, other.unit);
+        double result = ConvertFromBase(resultBase, targetUnit);
 
-        double diff = v1 - v2;
-
-        double result = ConvertFromBase(diff, targetUnit);
-
-        result = Math.Round(result, 2);
-
-        return new Quantity<U>(result, targetUnit);
+        return new Quantity<U>(Round(result), targetUnit);
     }
 
-    // --------------------
-    // Divide (UC12)
-    // --------------------
+    // ============================
+    // DIVIDE
+    // ============================
+
     public double Divide(Quantity<U> other)
     {
-        if (other == null)
-            throw new ArgumentException("Quantity cannot be null");
+        validateArithmeticOperands(other, default(U), false);
 
-        double v1 = ConvertToBase(this.value, this.unit);
-        double v2 = ConvertToBase(other.value, other.unit);
+        double result = performBaseArithmetic(other, ArithmeticOperation.DIVIDE);
 
-        if (v2 == 0)
-            throw new ArithmeticException("Division by zero");
-
-        return v1 / v2;
+        return result;
     }
 
-    // --------------------
-    // Equality
-    // --------------------
+    // ============================
+    // CENTRALIZED VALIDATION
+    // ============================
+
+    private void validateArithmeticOperands(Quantity<U> other, U targetUnit, bool targetUnitRequired)
+    {
+        if (other == null)
+            throw new ArgumentException("Operand cannot be null");
+
+        if (targetUnitRequired && targetUnit == null)
+            throw new ArgumentException("Target unit cannot be null");
+
+        if (unit.GetType() != other.unit.GetType())
+            throw new ArgumentException("Incompatible measurement categories");
+
+        if (double.IsNaN(value) || double.IsInfinity(value) ||
+            double.IsNaN(other.value) || double.IsInfinity(other.value))
+            throw new ArgumentException("Values must be finite numbers");
+    }
+
+    // ============================
+    // CORE ARITHMETIC HELPER
+    // ============================
+
+    private double performBaseArithmetic(Quantity<U> other, ArithmeticOperation operation)
+    {
+        double base1 = ConvertToBase(this.value, this.unit);
+        double base2 = ConvertToBase(other.value, other.unit);
+
+        switch (operation)
+        {
+            case ArithmeticOperation.ADD:
+                return base1 + base2;
+
+            case ArithmeticOperation.SUBTRACT:
+                return base1 - base2;
+
+            case ArithmeticOperation.DIVIDE:
+
+                if (base2 == 0)
+                    throw new ArithmeticException("Division by zero");
+
+                return base1 / base2;
+
+            default:
+                throw new ArgumentException("Unsupported operation");
+        }
+    }
+
+    // ============================
+    // CONVERSION
+    // ============================
+
+    public Quantity<U> ConvertTo(U targetUnit)
+    {
+        double baseValue = ConvertToBase(value, unit);
+        double converted = ConvertFromBase(baseValue, targetUnit);
+
+        return new Quantity<U>(Round(converted), targetUnit);
+    }
+
+    // ============================
+    // EQUALITY
+    // ============================
+
     public override bool Equals(object obj)
     {
         if (this == obj)
@@ -147,9 +184,10 @@ public class Quantity<U> where U : Enum
         return $"Quantity({value}, {unit})";
     }
 
-    // --------------------
-    // Helpers
-    // --------------------
+    // ============================
+    // HELPERS
+    // ============================
+
     private double ConvertToBase(double value, U unit)
     {
         if (unit is LengthUnit lu)
@@ -176,5 +214,10 @@ public class Quantity<U> where U : Enum
             return vu.ConvertFromBaseUnit(baseValue);
 
         throw new ArgumentException("Unsupported unit type");
+    }
+
+    private double Round(double value)
+    {
+        return Math.Round(value, 2);
     }
 }
