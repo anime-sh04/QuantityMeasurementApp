@@ -99,6 +99,9 @@ public class Quantity<U> where U : Enum
     
         if (unit is WeightUnit wu)
             return wu.ConvertToBaseUnit(value);
+
+        if (unit is VolumeUnit volume)
+            return volume.ConvertToBaseUnit(value);
     
         throw new ArgumentException("Unsupported unit type");
     }
@@ -110,6 +113,9 @@ public class Quantity<U> where U : Enum
     
         if (unit is WeightUnit wu)
             return wu.ConvertFromBaseUnit(baseValue);
+
+        if (unit is VolumeUnit volume)
+            return volume.ConvertFromBaseUnit(baseValue);
     
         throw new ArgumentException("Unsupported unit type");
     }
