@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSTest" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuantityMeasurementAppConsole\QuantityMeasurementAppConsole.csproj" />
+    <ProjectReference Include="..\QuantityMeasurementAppBusinessLayer\QuantityMeasurementAppBusinessLayer.csproj" />
+    <ProjectReference Include="..\QuantityMeasurementAppModelLayer\QuantityMeasurementAppModelLayer.csproj" />
+    <ProjectReference Include="..\QuantityMeasurementAppRepositoryLayer\QuantityMeasurementAppRepositoryLayer.csproj" />
+  </ItemGroup>
+
+</Project>
