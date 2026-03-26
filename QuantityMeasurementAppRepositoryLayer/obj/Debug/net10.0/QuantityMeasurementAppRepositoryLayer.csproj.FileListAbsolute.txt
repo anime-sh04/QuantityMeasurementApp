@@ -1,0 +1,15 @@
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\bin\Debug\net10.0\QuantityMeasurementAppRepositoryLayer.deps.json
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\bin\Debug\net10.0\QuantityMeasurementAppRepositoryLayer.dll
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\bin\Debug\net10.0\QuantityMeasurementAppRepositoryLayer.pdb
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\bin\Debug\net10.0\QuantityMeasurementAppModelLayer.dll
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\bin\Debug\net10.0\QuantityMeasurementAppModelLayer.pdb
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\obj\Debug\net10.0\QuantityMeasurementAppRepositoryLayer.csproj.AssemblyReference.cache
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\obj\Debug\net10.0\QuantityMeasurementAppRepositoryLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\obj\Debug\net10.0\QuantityMeasurementAppRepositoryLayer.AssemblyInfoInputs.cache
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\obj\Debug\net10.0\QuantityMeasurementAppRepositoryLayer.AssemblyInfo.cs
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\obj\Debug\net10.0\QuantityMeasurementAppRepositoryLayer.csproj.CoreCompileInputs.cache
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\obj\Debug\net10.0\Quantity.4A8CA127.Up2Date
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\obj\Debug\net10.0\QuantityMeasurementAppRepositoryLayer.dll
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\obj\Debug\net10.0\refint\QuantityMeasurementAppRepositoryLayer.dll
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\obj\Debug\net10.0\QuantityMeasurementAppRepositoryLayer.pdb
+C:\Users\test\Downloads\UC16_QuantityMeasurement\Q\QuantityMeasurementAppRepositoryLayer\obj\Debug\net10.0\ref\QuantityMeasurementAppRepositoryLayer.dll

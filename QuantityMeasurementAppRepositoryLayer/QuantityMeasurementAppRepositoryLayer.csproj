@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>QuantityMeasurementAppRepositoryLayer</AssemblyName>
+    <RootNamespace>QuantityMeasurementAppRepositoryLayer</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- SQL Server ADO.NET driver (replaces System.Data.SqlClient for .NET Core/5+) -->
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuantityMeasurementAppModelLayer\QuantityMeasurementAppModelLayer.csproj" />
+  </ItemGroup>
+</Project>
