@@ -1,0 +1,11 @@
+C:\Users\test\Downloads\output_with_auth\project\QuantityMeasurementAppModelLayer\bin\Debug\net10.0\QuantityMeasurementAppModelLayer.deps.json
+C:\Users\test\Downloads\output_with_auth\project\QuantityMeasurementAppModelLayer\bin\Debug\net10.0\QuantityMeasurementAppModelLayer.dll
+C:\Users\test\Downloads\output_with_auth\project\QuantityMeasurementAppModelLayer\bin\Debug\net10.0\QuantityMeasurementAppModelLayer.pdb
+C:\Users\test\Downloads\output_with_auth\project\QuantityMeasurementAppModelLayer\obj\Debug\net10.0\QuantityMeasurementAppModelLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\test\Downloads\output_with_auth\project\QuantityMeasurementAppModelLayer\obj\Debug\net10.0\QuantityMeasurementAppModelLayer.AssemblyInfoInputs.cache
+C:\Users\test\Downloads\output_with_auth\project\QuantityMeasurementAppModelLayer\obj\Debug\net10.0\QuantityMeasurementAppModelLayer.AssemblyInfo.cs
+C:\Users\test\Downloads\output_with_auth\project\QuantityMeasurementAppModelLayer\obj\Debug\net10.0\QuantityMeasurementAppModelLayer.csproj.CoreCompileInputs.cache
+C:\Users\test\Downloads\output_with_auth\project\QuantityMeasurementAppModelLayer\obj\Debug\net10.0\QuantityMeasurementAppModelLayer.dll
+C:\Users\test\Downloads\output_with_auth\project\QuantityMeasurementAppModelLayer\obj\Debug\net10.0\refint\QuantityMeasurementAppModelLayer.dll
+C:\Users\test\Downloads\output_with_auth\project\QuantityMeasurementAppModelLayer\obj\Debug\net10.0\QuantityMeasurementAppModelLayer.pdb
+C:\Users\test\Downloads\output_with_auth\project\QuantityMeasurementAppModelLayer\obj\Debug\net10.0\ref\QuantityMeasurementAppModelLayer.dll

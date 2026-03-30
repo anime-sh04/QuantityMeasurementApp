@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>QuantityMeasurementApp.Api</AssemblyName>
+    <RootNamespace>QuantityMeasurementApp.Api</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- OpenAPI / Swagger -->
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi"             Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore"                   Version="7.3.1" />
+
+    <!-- EF Core / SQL Server -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design"     Version="9.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer"  Version="9.0.0" />
+
+    <!-- JWT Bearer Authentication -->
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens"               Version="8.4.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt"              Version="8.4.0" />
+
+    <!-- Google OAuth2 ID-token validation -->
+    <PackageReference Include="Google.Apis.Auth"                         Version="1.68.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuantityMeasurementAppBusinessLayer\QuantityMeasurementAppBusinessLayer.csproj" />
+    <ProjectReference Include="..\QuantityMeasurementAppModelLayer\QuantityMeasurementAppModelLayer.csproj" />
+    <ProjectReference Include="..\QuantityMeasurementAppRepositoryLayer\QuantityMeasurementAppRepositoryLayer.csproj" />
+  </ItemGroup>
+</Project>
