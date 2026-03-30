@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>QuantityMeasurementApp.Api</AssemblyName>
+    <RootNamespace>QuantityMeasurementApp.Api</RootNamespace>
+    <!-- Generate XML docs so Swagger can show <summary> and <remarks> -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi"           Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design"   Version="9.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore"                  Version="7.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QuantityMeasurementAppBusinessLayer\QuantityMeasurementAppBusinessLayer.csproj" />
+    <ProjectReference Include="..\QuantityMeasurementAppModelLayer\QuantityMeasurementAppModelLayer.csproj" />
+    <ProjectReference Include="..\QuantityMeasurementAppRepositoryLayer\QuantityMeasurementAppRepositoryLayer.csproj" />
+  </ItemGroup>
+</Project>

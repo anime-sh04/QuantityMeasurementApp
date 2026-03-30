@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuantityMeasurementApp.Api</name>
+    </assembly>
+    <members>
+        <member name="M:QuantityMeasurementApp.Api.Controller.QuantityMeasurementAPIController.Compare(QuantityMeasurementApp.Api.DTOs.CompareRequestDTO)">
+             <summary>
+             Compare two quantities of the same type.
+             No TargetUnit needed — result is Equal / Not Equal.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/quantity/compare
+                 {
+                   "quantityOne": { "value": 1, "unit": "Feet", "measurementType": "Length" },
+                   "quantityTwo": { "value": 12, "unit": "Inches", "measurementType": "Length" }
+                 }
+             </remarks>
+        </member>
+        <member name="M:QuantityMeasurementApp.Api.Controller.QuantityMeasurementAPIController.Add(QuantityMeasurementApp.Api.DTOs.AddRequestDTO)">
+             <summary>
+             Add two quantities and return the result in the specified TargetUnit.
+             Temperature is not supported.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/quantity/add
+                 {
+                   "quantityOne":  { "value": 1,   "unit": "Feet",   "measurementType": "Length" },
+                   "quantityTwo":  { "value": 6,   "unit": "Inches", "measurementType": "Length" },
+                   "targetUnit":   "Inches"
+                 }
+             </remarks>
+        </member>
+        <member name="M:QuantityMeasurementApp.Api.Controller.QuantityMeasurementAPIController.Subtract(QuantityMeasurementApp.Api.DTOs.SubtractRequestDTO)">
+             <summary>
+             Subtract QuantityTwo from QuantityOne and return the result in TargetUnit.
+             Temperature is not supported.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/quantity/subtract
+                 {
+                   "quantityOne":  { "value": 2,   "unit": "Kilogram", "measurementType": "Weight" },
+                   "quantityTwo":  { "value": 500, "unit": "Gram",     "measurementType": "Weight" },
+                   "targetUnit":   "Gram"
+                 }
+             </remarks>
+        </member>
+        <member name="M:QuantityMeasurementApp.Api.Controller.QuantityMeasurementAPIController.Divide(QuantityMeasurementApp.Api.DTOs.DivideRequestDTO)">
+             <summary>
+             Divide QuantityOne by QuantityTwo. Returns a dimensionless ratio.
+             No TargetUnit needed. Temperature is not supported.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/quantity/divide
+                 {
+                   "quantityOne": { "value": 1, "unit": "Gallon", "measurementType": "Volume" },
+                   "quantityTwo": { "value": 1, "unit": "Litre",  "measurementType": "Volume" }
+                 }
+             </remarks>
+        </member>
+        <member name="M:QuantityMeasurementApp.Api.Controller.QuantityMeasurementAPIController.Convert(QuantityMeasurementApp.Api.DTOs.ConvertRequestDTO)">
+             <summary>
+             Convert a quantity to a different unit within the same MeasurementType.
+             Works for all types including Temperature.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/quantity/convert
+                 {
+                   "source":     { "value": 100, "unit": "Celsius", "measurementType": "Temperature" },
+                   "targetUnit": "Fahrenheit"
+                 }
+             </remarks>
+        </member>
+        <member name="M:QuantityMeasurementApp.Api.Controller.QuantityMeasurementAPIController.GetHistory">
+            <summary>Get full measurement history (all operations, all types).</summary>
+        </member>
+        <member name="M:QuantityMeasurementApp.Api.Controller.QuantityMeasurementAPIController.GetHistoryByOperation(System.String)">
+            <summary>
+            Filter history by operation type.
+            Valid values: Compare | Add | Subtract | Divide | Convert
+            </summary>
+        </member>
+        <member name="M:QuantityMeasurementApp.Api.Controller.QuantityMeasurementAPIController.GetHistoryByType(System.String)">
+            <summary>
+            Filter history by measurement type.
+            Valid values: Length | Weight | Volume | Temperature
+            </summary>
+        </member>
+        <member name="M:QuantityMeasurementApp.Api.Controller.QuantityMeasurementAPIController.DeleteHistory">
+            <summary>Delete all history records.</summary>
+        </member>
+        <member name="M:QuantityMeasurementApp.Api.Controller.QuantityMeasurementAPIController.GetStats">
+            <summary>Get total record count and repository info.</summary>
+        </member>
+        <member name="T:QuantityMeasurementApp.Api.DTOs.QuantityRequest">
+            <summary>A single quantity: a numeric value + its unit + the measurement category.</summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.QuantityRequest.Value">
+            <summary>The numeric amount. Example: 1.5</summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.QuantityRequest.Unit">
+            <summary>
+            Unit for this value.
+            Length: Feet | Inches | Yards | Centimeters
+            Weight: Kilogram | Gram | Pound
+            Volume: Litre | Millilitre | Gallon
+            Temperature: Celsius | Fahrenheit | Kelvin
+            </summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.QuantityRequest.MeasurementType">
+            <summary>Category: Length | Weight | Volume | Temperature</summary>
+        </member>
+        <member name="T:QuantityMeasurementApp.Api.DTOs.CompareRequestDTO">
+            <summary>
+            Compare two quantities of the same type.
+            No TargetUnit needed — comparison is done in base units.
+            </summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.CompareRequestDTO.QuantityOne">
+            <summary>First quantity to compare.</summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.CompareRequestDTO.QuantityTwo">
+            <summary>Second quantity to compare (must be the same MeasurementType as QuantityOne).</summary>
+        </member>
+        <member name="T:QuantityMeasurementApp.Api.DTOs.AddRequestDTO">
+            <summary>
+            Add two quantities and express the result in TargetUnit.
+            Temperature is not supported for arithmetic.
+            </summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.AddRequestDTO.QuantityOne">
+            <summary>First quantity.</summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.AddRequestDTO.QuantityTwo">
+            <summary>Second quantity (must be the same MeasurementType as QuantityOne).</summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.AddRequestDTO.TargetUnit">
+            <summary>
+            Unit for the result.
+            Must be a valid unit for the same MeasurementType.
+            Example: "Inches", "Kilogram", "Litre"
+            </summary>
+        </member>
+        <member name="T:QuantityMeasurementApp.Api.DTOs.SubtractRequestDTO">
+            <summary>
+            Subtract QuantityTwo from QuantityOne and express the result in TargetUnit.
+            Temperature is not supported for arithmetic.
+            </summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.SubtractRequestDTO.QuantityOne">
+            <summary>First quantity (the minuend).</summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.SubtractRequestDTO.QuantityTwo">
+            <summary>Second quantity (the subtrahend, same MeasurementType as QuantityOne).</summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.SubtractRequestDTO.TargetUnit">
+            <summary>
+            Unit for the result.
+            Must be a valid unit for the same MeasurementType.
+            Example: "Feet", "Gram", "Gallon"
+            </summary>
+        </member>
+        <member name="T:QuantityMeasurementApp.Api.DTOs.DivideRequestDTO">
+            <summary>
+            Divide QuantityOne by QuantityTwo.
+            Returns a dimensionless ratio — no TargetUnit needed.
+            Temperature is not supported for arithmetic.
+            </summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.DivideRequestDTO.QuantityOne">
+            <summary>Dividend quantity.</summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.DivideRequestDTO.QuantityTwo">
+            <summary>Divisor quantity (must be the same MeasurementType as QuantityOne, non-zero).</summary>
+        </member>
+        <member name="T:QuantityMeasurementApp.Api.DTOs.ConvertRequestDTO">
+            <summary>
+            Convert a single quantity to a different unit within the same MeasurementType.
+            Works for all types including Temperature.
+            </summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.ConvertRequestDTO.Source">
+            <summary>The quantity to convert.</summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.ConvertRequestDTO.TargetUnit">
+            <summary>
+            The unit to convert into (must be in the same MeasurementType as Source).
+            Example: "Fahrenheit", "Yards", "Kilogram"
+            </summary>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+    </members>
+</doc>
