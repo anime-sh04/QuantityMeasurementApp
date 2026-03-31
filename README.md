@@ -77,7 +77,7 @@ Add(1, FEET, 12, INCHES, FEET); // → 2 FEET
 Cross-unit subtraction with optional target unit, negative result support, and epsilon-based floating-point comparison.
 
 ### UC9 – Multi-Category Measurement
-Introduces separate classes — `QuantityLength`, `QuantityVolume`, `QuantityWeight` — each with its own unit enum. Prevents cross-category operations.
+Introduces separate classes,`QuantityLength`, `QuantityVolume`, `QuantityWeight`,each with its own unit enum. Prevents cross-category operations.
 
 ### UC10 – Generic Quantity with Unit Interface
 Refactors UC9 into a single `Quantity<T>` generic class implementing `IUnit`. Centralises conversion logic and follows Open/Closed Principle (OCP).
@@ -92,7 +92,7 @@ Adds `Add`, `Subtract`, and `Divide` to the generic class. Division returns a di
 Introduces a private helper with an `ArithmeticOperation` enum (`ADD`, `SUBTRACT`, `DIVIDE`) to eliminate duplicated validation and conversion logic.
 
 ### UC14 – Temperature with Selective Arithmetic
-Adds `TemperatureUnit` (Celsius, Fahrenheit, Kelvin). Supports equality and conversion, but blocks arithmetic via `SupportsArithmetic` interface — throws `UnsupportedOperationException`.
+Adds `TemperatureUnit` (Celsius, Fahrenheit, Kelvin). Supports equality and conversion, but blocks arithmetic via `SupportsArithmetic` interface,throws `UnsupportedOperationException`.
 
 ### UC15 – Persistence via ADO.NET
 Stores measurement operations (inputs, units, results, errors) in SQL Server using `SqlConnection` and `SqlCommand`. Enables operation history retrieval.
