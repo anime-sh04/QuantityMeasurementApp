@@ -1,0 +1,67 @@
+version: "3.9"
+
+services:
+
+  # ── API Gateway ─────────────────────────────────────────────────────────
+  api-gateway:
+    build:
+      context: ./ApiGateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+      - "5000:5000"
+    depends_on:
+      - auth-service
+      - conversion-service
+      - history-service
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - qm-net
+    restart: unless-stopped
+
+  # ── Auth Service ─────────────────────────────────────────────────────────
+  auth-service:
+    build:
+      context: ./AuthService
+      dockerfile: Dockerfile
+    container_name: auth-service
+    ports:
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - qm-net
+    restart: unless-stopped
+
+  # ── Conversion Service ───────────────────────────────────────────────────
+  conversion-service:
+    build:
+      context: ./ConversionService
+      dockerfile: Dockerfile
+    container_name: conversion-service
+    ports:
+      - "5002:5002"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - qm-net
+    restart: unless-stopped
+
+  # ── History Service ──────────────────────────────────────────────────────
+  history-service:
+    build:
+      context: ./HistoryService
+      dockerfile: Dockerfile
+    container_name: history-service
+    ports:
+      - "5003:5003"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    networks:
+      - qm-net
+    restart: unless-stopped
+
+networks:
+  qm-net:
+    driver: bridge
