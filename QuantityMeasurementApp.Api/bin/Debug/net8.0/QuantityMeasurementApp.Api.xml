@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuantityMeasurementApp.Api</name>
+    </assembly>
+    <members>
+        <member name="M:QuantityMeasurementApp.Api.Controller.AuthController.Register(QuantityMeasurementApp.Api.DTOs.RegisterRequestDTO)">
+             <summary>Register a new local account with email + password.</summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/auth/register
+                 {
+                   "email": "alice@example.com",
+                   "password": "MySecret123!",
+                   "firstName": "Alice",
+                   "lastName": "Smith"
+                 }
+             </remarks>
+        </member>
+        <member name="M:QuantityMeasurementApp.Api.Controller.AuthController.Login(QuantityMeasurementApp.Api.DTOs.LoginRequestDTO)">
+             <summary>Login with email + password and receive a JWT.</summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/auth/login
+                 {
+                   "email": "alice@example.com",
+                   "password": "MySecret123!"
+                 }
+             </remarks>
+        </member>
+        <member name="M:QuantityMeasurementApp.Api.Controller.AuthController.GoogleLogin(QuantityMeasurementApp.Api.DTOs.GoogleLoginRequestDTO)">
+             <summary>
+             Authenticate with a Google ID token obtained from the frontend via Google Sign-In.
+             Creates a new account automatically on first login.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST /api/auth/google
+                 {
+                   "idToken": "eyJhbGciOiJS..."
+                 }
+             </remarks>
+        </member>
+        <member name="M:QuantityMeasurementApp.Api.Controller.AuthController.Me">
+            <summary>Return the profile of the currently authenticated user.</summary>
+        </member>
+        <member name="P:QuantityMeasurementApp.Api.DTOs.GoogleLoginRequestDTO.IdToken">
+            <summary>The ID token returned by Google Sign-In on the frontend.</summary>
+        </member>
+        <member name="T:QuantityMeasurementApp.Api.Middleware.GlobalExceptionMiddleware">
+            <summary>
+            Catches unhandled exceptions and returns a consistent JSON error envelope.
+            Prevents stack traces from leaking to the client in production.
+            </summary>
+        </member>
+        <member name="T:QuantityMeasurementApp.Api.Middleware.RequestLoggingMiddleware">
+            <summary>
+            Assigns a unique X-Correlation-Id header to every request and logs
+            method, path, status code, and duration.  Strips sensitive headers
+            (Authorization) from logs.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,17 @@
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\bin\Debug\net8.0\QuantityMeasurementAppBusinessLayer.deps.json
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\bin\Debug\net8.0\QuantityMeasurementAppBusinessLayer.dll
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\bin\Debug\net8.0\QuantityMeasurementAppBusinessLayer.pdb
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\bin\Debug\net8.0\QuantityMeasurementAppModelLayer.dll
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\bin\Debug\net8.0\QuantityMeasurementAppRepositoryLayer.dll
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\bin\Debug\net8.0\QuantityMeasurementAppModelLayer.pdb
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\bin\Debug\net8.0\QuantityMeasurementAppRepositoryLayer.pdb
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\obj\Debug\net8.0\QuantityMeasurementAppBusinessLayer.csproj.AssemblyReference.cache
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\obj\Debug\net8.0\QuantityMeasurementAppBusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\obj\Debug\net8.0\QuantityMeasurementAppBusinessLayer.AssemblyInfoInputs.cache
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\obj\Debug\net8.0\QuantityMeasurementAppBusinessLayer.AssemblyInfo.cs
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\obj\Debug\net8.0\QuantityMeasurementAppBusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\obj\Debug\net8.0\Quantity.7310F502.Up2Date
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\obj\Debug\net8.0\QuantityMeasurementAppBusinessLayer.dll
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\obj\Debug\net8.0\refint\QuantityMeasurementAppBusinessLayer.dll
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\obj\Debug\net8.0\QuantityMeasurementAppBusinessLayer.pdb
+C:\Users\test\Downloads\qm-angular\BackEnd\QuantityMeasurementAppBusinessLayer\obj\Debug\net8.0\ref\QuantityMeasurementAppBusinessLayer.dll
